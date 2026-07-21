@@ -1,32 +1,28 @@
 """
 Command line runner for the Music Recommender Simulation.
-
 This file helps you quickly run and test your recommender.
-
-You will implement the functions in recommender.py:
-- load_songs
-- score_song
-- recommend_songs
 """
-
-from recommender import load_songs, recommend_songs
+from src.recommender import load_songs, UserProfile, Recommender
 
 
 def main() -> None:
-    songs = load_songs("data/songs.csv") 
+    songs = load_songs("data/songs.csv")
 
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    # Default profile: confident hip-hop listener
+    user_prefs = UserProfile(
+        favorite_genre="hip-hop",
+        favorite_mood="confident",
+        target_energy=0.78,
+        likes_acoustic=False,
+    )
 
-    recommendations = recommend_songs(user_prefs, songs, k=5)
+    rec = Recommender(songs)
+    recommendations = rec.recommend(user_prefs, k=5)
 
     print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
+    for song in recommendations:
+        explanation = rec.explain_recommendation(user_prefs, song)
+        print(f"{song.title} — {explanation}")
         print()
 
 

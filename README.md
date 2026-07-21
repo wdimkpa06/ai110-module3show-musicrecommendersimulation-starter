@@ -86,13 +86,14 @@ You can add more tests in `tests/test_recommender.py`.
 
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
+Top recommendations:
+
+City Lights Anthem — Score: 4.00 — genre match (+2.0), mood match (+1.0), energy closeness (+1.00)
+Late Night Cipher — Score: 2.93 — genre match (+2.0), energy closeness (+0.93)
+Corner Store Chronicles — Score: 2.77 — genre match (+2.0), energy closeness (+0.77)
+Rooftop Lights — Score: 0.98 — energy closeness (+0.98)
+Night Drive Loop — Score: 0.97 — energy closeness (+0.97)
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
