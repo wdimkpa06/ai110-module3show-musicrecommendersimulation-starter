@@ -29,6 +29,22 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Real-world music recommenders like Spotify combine two approaches: collaborative filtering, which suggests songs based on what similar users have liked, and content-based filtering, which suggests songs based on the song's own attributes compared to a listener's known taste. Collaborative filtering is powerful once a platform has lots of user behavior data, but it struggles with brand-new songs that have no listening history yet ("cold start"). Content-based filtering solves this by working directly from a song's own features, so it can recommend something the moment it's added to a catalog. This project builds a purely content-based recommender: it has no user community or listening history to draw on, so it scores every song in the catalog against a single user's stated taste profile, based on how closely the song's attributes match what that user prefers.
+
+Features:
+
+Song objects use: title, artist, genre, mood, energy, tempo_bpm, valence, danceability, acousticness
+
+UserProfile objects use: favorite_genre, favorite_mood, target_energy, likes_acoustic
+
+Algorithm Recipe:
+
++2.0 points for a genre match
++1.0 point for a mood match
+Up to +1.0 points for energy closeness, using max(0, 1 - abs(song.energy - user.target_energy)) scaled by weight
+
+Potential Bias: This scoring system weights genre highest (+2.0), meaning it may over-prioritize genre matches even when a song's mood or energy is a much better fit for the listener. For example, a "confident hip-hop" profile could rank an intense hip-hop track above a genuinely confident-sounding song from another genre, simply because genre is worth more points than mood. The system may also underrepresent genres with fewer songs in the catalog (e.g., ambient or jazz, which currently have only one track each), since there's less variety for the scoring to differentiate between.
+
 ---
 
 ## Getting Started
