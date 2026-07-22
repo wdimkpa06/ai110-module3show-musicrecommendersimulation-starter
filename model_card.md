@@ -132,6 +132,8 @@ Gym Hero — Score: 1.97 — mood match (+1.0), energy closeness (+0.97)
 
 The first three profiles all surfaced the expected song as the top result, with clean drop-offs in score as fewer criteria matched. The adversarial profile revealed a real limitation: because no r&b song in the catalog is tagged "intense," the top 3 results were r&b songs ranked only by energy closeness, while genuinely intense-mood songs (Storm Runner, Gym Hero) were pushed to 4th and 5th place despite matching the mood the listener asked for. This shows genre match dominates mood match strongly enough that a listener's stated mood preference can be effectively ignored when it doesn't co-occur with their genre preference anywhere in the data.
 
+**Weight sensitivity experiment:** Halved genre's weight (2.0 → 1.0) and doubled energy's weight (1.0 → 2.0), keeping mood at 1.0, so genre and mood became equal. Re-running the adversarial profile ("intense" r&b) flipped the top 2 results: Storm Runner and Gym Hero — genuinely intense-mood songs from other genres — moved from 4th/5th place up to 1st/2nd, ahead of every off-mood r&b song. This confirms the bias described above was specifically caused by genre outweighing mood 2-to-1, not an inherent limitation of content-based scoring. After observing this, the original weights (genre 2.0, mood 1.0, energy 1.0) were kept for the shipped version, since equal-weighting genre and mood is a design choice with its own tradeoffs, not a strict improvement.
+
 ---
 
 ## 8. Future Work  
