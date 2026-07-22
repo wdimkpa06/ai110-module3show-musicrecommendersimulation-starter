@@ -40,7 +40,7 @@ class Recommender:
 
     def _score_song(self, user: UserProfile, song: Song) -> Tuple[float, List[str]]:
         """
-        Scores one song against a user's preferences using genre, mood, and energy closeness.
+        Scores one song against a user's preferences using genre, mood, and energy closeness. weight
         
         """
         score = 0.0
